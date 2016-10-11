@@ -5,6 +5,24 @@
     <style name="AppTheme" parent="AppThemeBase">
         <item name="android:datePickerStyle">@style/SpinnerDatePicker</item>
         <item name="android:timePickerStyle">@style/SpinnerTimePicker</item>
+        <item name="toolbarStyle">@style/NativeScriptToolbarStyle</item>
+        <item name="colorPrimary">@color/ns_primary</item>
+        <item name="colorPrimaryDark">@color/ns_primaryDark</item>
+        <item name="colorAccent">@color/ns_accent</item>
+        <item name="android:statusBarColor">@color/ns_primary</item>
+        <item name="actionMenuTextColor">@color/ns_white</item>
+        <item name="android:background">@color/ns_grey</item>
+    </style>
+
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="toolbarStyle">@style/NativeScriptToolbarStyle</item>
+        <item name="colorPrimary">@color/ns_primary</item>
+        <item name="colorPrimaryDark">@color/ns_primaryDark</item>
+        <item name="colorAccent">@color/ns_accent</item>
+        <item name="android:statusBarColor">@color/ns_primary</item>
+        <item name="actionMenuTextColor">@color/ns_white</item>
+        <item name="android:background">@color/ns_grey</item>
+
     </style>
 
     <!-- Default style for DatePicker - in spinner mode -->
