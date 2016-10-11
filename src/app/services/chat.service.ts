@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as io from 'socket.io-client';
-import { Chat } from './chat';
+import { Chat } from '../models/chat';
 
 @Injectable()
 export class ChatService {
