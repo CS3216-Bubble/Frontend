@@ -5,7 +5,7 @@ export class Chat {
   roomDescription: string = '';
   categories: string[];
   lastActive: Date;
-  messages: [];
+  messages = [];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
