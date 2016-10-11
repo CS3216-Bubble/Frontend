@@ -1,3 +1,16 @@
 <h2>{{chat.roomName}}</h2>
 <h2>{{chat.roomDescription}}</h2>
+
+<div class="messages">
+    <div class="message" *ngFor="let msg of chat.messages">
+        &lt;{{msg.userId}}&gt;
+        {{msg.message}}
+    </div>
+</div>
+<h3>
+    &lt;{{chatService.socket.id}}&gt;
+    <input [(ngModel)]="message" (keypress)="eventHandler($event)">
+    <button (click)="send()">Send</button>
+</h3>
+
 <span><a [routerLink]="['/']">Back to chat list</a></span>
