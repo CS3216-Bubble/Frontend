@@ -9,7 +9,9 @@ import { Chat } from '../chat/chat';
   styleUrls: ['./chat-detail.component.css']
 })
 export class ChatDetailComponent implements OnInit {
+
   chat: Chat;
+  message: string = '';
   constructor(private chatService: ChatService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -17,6 +19,28 @@ export class ChatDetailComponent implements OnInit {
       .getChatById(this.route.snapshot.params['roomId']);
     console.log(this.chat);
     this.chatService.joinChat(this.chat.roomId);
+    this.chatService.conversationListener.subscribe((payload) => {
+      console.log('customer sent message', payload);
+      this.chat.messages.push(payload);
+    });
   }
 
+  send(): void {
+    if (this.chatService.socket && this.chatService.socket.id) {
+      this.chatService.createMessage(this.chatService.socket.id, this.message);
+      this.chat.messages.push({
+        userId: this.chatService.socket.id,
+        roomId: this.chatService.socket.roomId,
+        message: this.message
+      });
+      this.message = '';
+    }
+  }
+
+  // Handle keypress event, for sending chat message
+  eventHandler(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+        this.send();
+    }
+  }
 }

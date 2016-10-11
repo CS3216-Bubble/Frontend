@@ -10,6 +10,10 @@ export class ChatService {
   lastId: number = 0;
   // Placeholder for chats
   chats: Chat[] = [];
+  currentRoom: string = '';
+  currentConversation: string[];
+
+  conversationListener = null;
 
   private host: string = window.location.protocol + '//' + window.location.hostname + ':3000';
   // socket: SocketIOClient.Socket;
@@ -38,6 +42,11 @@ export class ChatService {
       console.log('join room', payload);
     });
 
+    this.conversationListener = Observable.fromEvent(this.socket, 'add_message');
+    this.conversationListener.subscribe((payload) => {
+      console.log('sent message', payload);
+    });
+
     let errorListener = Observable.fromEvent(this.socket, 'bubble_error');
     errorListener.subscribe((payload) => {
       console.log('error', payload);
@@ -50,8 +59,9 @@ export class ChatService {
 
   joinChat(roomId: string) {
     this.socket.emit('join_room', {
-      roomId: roomId,
+      roomId,
     });
+    this.currentRoom = roomId;
   }
 
   updateChatById(roomId: string, values: Object = {}): Chat {
@@ -72,5 +82,12 @@ export class ChatService {
     return this.chats
       .filter(chat => chat.roomId == roomId)
       .pop();
+  }
+
+  createMessage(userId: string, message: string) {
+    this.socket.emit('add_message', {
+      roomId: this.currentRoom,
+      message,
+    });
   }
 }
