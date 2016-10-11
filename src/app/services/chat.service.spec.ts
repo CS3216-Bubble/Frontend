@@ -1,8 +1,8 @@
-=/* tslint:disable:no-unused-variable */
+/* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { ChatService } from './chat.service';
-import { Chat } from './chat';
+import { Chat } from '../models/chat';
 
 
 describe('Service: Chat', () => {

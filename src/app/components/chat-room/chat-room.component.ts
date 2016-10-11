@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChatService } from '../chat/chat.service';
-import { Chat } from '../chat/chat';
+import { ChatService } from '../../services/chat.service';
+import { Chat } from '../../models/chat';
 
 @Component({
-  selector: 'app-chat-detail',
-  templateUrl: './chat-detail.component.html',
-  styleUrls: ['./chat-detail.component.css']
+  selector: 'app-chat-room',
+  templateUrl: './chat-room.component.html',
+  styleUrls: ['./chat-room.component.css']
 })
-export class ChatDetailComponent implements OnInit {
+export class ChatRoomComponent implements OnInit {
 
   chat: Chat;
   message: string = '';

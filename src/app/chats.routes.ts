@@ -1,7 +1,7 @@
-import { ChatListComponent } from './chat-list/chat-list.component';
-import { ChatDetailComponent } from './chat-detail/chat-detail.component';
+import { ChatListComponent } from './components/chat-list/chat-list.component';
+import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 
 export const ChatAppRoutes = [
   { path: '', component: ChatListComponent },
-  { path: 'chat/:roomId', component: ChatDetailComponent }
+  { path: 'chat/:roomId', component: ChatRoomComponent }
 ];
