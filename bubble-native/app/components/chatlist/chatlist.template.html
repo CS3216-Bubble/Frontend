@@ -1,0 +1,59 @@
+<StatusBar ios:barStyle="light" android:barStyle="#72D2E4">
+</StatusBar>
+<ActionBar class="action-bar" title="Bubble">
+	<ActionItem (tap)="onOptions($event)" text="Create Chat" ios.position="right" ios.systemIcon="7" class="material-icon" android.position="popup">
+	</ActionItem>
+	<ActionItem (tap)="onToggleSearch($event)" ios.position="left" android:text="Search" ios:text="Search" class="material-icon"
+		ios.systemIcon="12" android.systemIcon="ic_menu_search" android.position="actionBar">
+	</ActionItem>
+	<ActionItem visibility="{{ !showTab ? 'visible' : 'collapse' }}" (tap)="onOptions($event)" text="Profile" class="material-icon"
+		android.position="popup">
+	</ActionItem>
+	<ActionItem visibility="{{ !showTab ? 'visible' : 'collapse' }}" (tap)="onOptions($event)" text="Settings" class="material-icon"
+		android.position="popup">
+	</ActionItem>
+</ActionBar>
+
+<StackLayout>
+	<CardView>
+		<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
+		</SearchBar>
+	</CardView>
+	<ScrollView class="body">
+		<StackLayout class="wrapper">
+			<CardView *ngFor="let chat of chats">
+				<GridLayout borderRadius="6" class="card" columns="*" rows="auto, *">
+					<StackLayout horizontalAlignment="stretch">
+						<Label horizontalAlignment="stretch" class="title" [text]="chat.title" android:class="label-item"></Label>
+						<Label horizontalAlignment="stretch" class="categories" [text]="chat.categories" android:class="label-item" textWrap="true"></Label>
+						<AbsoluteLayout horizontalAlignment="left">
+							<Label horizontalAlignment="left" class="sizing" text="{{chat.size}}/{{chat.limit}}" android:class="label-item" textWrap="true"></Label>
+						</AbsoluteLayout>
+					</StackLayout>
+					<AbsoluteLayout horizontalAlignment="right" verticalAlignment="bottom">
+						<Label horizontalAlignment="right" class="timestamp" [text]="chat.timestamp" android:class="label-item" textWrap="true"></Label>
+					</AbsoluteLayout>
+				</GridLayout>
+			</CardView>
+		</StackLayout>
+	</ScrollView>
+	<FrameLayout>
+		<TabView selectedColor="#d8292f" visibility="{{ showTab ? 'visible' : 'collapse' }}">
+			<TabItem title="Profile" ios:title="Profile" iconsource="">
+				<StackLayout>
+					<label text="Profile"></label>
+				</StackLayout>
+			</TabItem>
+			<TabItem title="Chats" ios:title="Chats" iconsource="">
+				<StackLayout>
+					<label text="Chats"></label>
+				</StackLayout>
+			</TabItem>
+			<TabItem title="Settings" ios:title="Settings" iconsource="">
+				<StackLayout>
+					<label text="Settings"></label>
+				</StackLayout>
+			</TabItem>
+		</TabView>
+	</FrameLayout>
+</StackLayout>
