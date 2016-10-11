@@ -6,7 +6,8 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
-        "noEmitOnError": true
+        "noEmitOnError": true,
+        "types": ["jasmine", "hammerjs"]
     },
     "exclude": [
         "node_modules",
