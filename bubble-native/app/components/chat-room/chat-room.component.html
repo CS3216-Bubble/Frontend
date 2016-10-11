@@ -1,0 +1,29 @@
+<StatusBar ios:barStyle="light" android:barStyle="#72D2E4">
+</StatusBar>
+<ActionBar class="action-bar" [title]="chat.roomName">
+	<ActionItem [nsRouterLink]="['/list']" text="Create Chat" ios.position="left" ios.systemIcon="7" class="material-icon" android.position="left">
+	</ActionItem>
+</ActionBar>
+
+<StackLayout>
+	<ScrollView class="body">
+		<StackLayout class="wrapper">
+			<CardView *ngFor="let msg of chat.messages">
+				<GridLayout borderRadius="6" class="card" columns="*" rows="auto, *">
+					<StackLayout horizontalAlignment="stretch">
+						<Label horizontalAlignment="stretch" class="title" [text]="msg.userId" android:class="label-item"></Label>
+						<Label horizontalAlignment="stretch" class="title" [text]="msg.message" android:class="label-item"></Label>
+					</StackLayout>
+				</GridLayout>
+			</CardView>
+		</StackLayout>
+	</ScrollView>
+</StackLayout>
+
+<h3>
+    &lt;{{chatService.socket.id}}&gt;
+    <input [(ngModel)]="message" (keypress)="eventHandler($event)">
+    <button (click)="send()">Send</button>
+</h3>
+
+<span><a [routerLink]="['/']">Back to chat list</a></span>
