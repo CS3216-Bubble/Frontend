@@ -11,6 +11,8 @@ class ChatListModel {
     constructor(public roomId: string, public roomName: string, public roomDescription: string, public categories: string, public userSize: number, public userLimit: number, public lastActive: string) {}
 }
 
+var moment = require('moment');
+
 var chatsList = [
     {   roomId: "00000001",
         roomName: "CS3216 too stressful", 
@@ -18,7 +20,7 @@ var chatsList = [
         categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"],
         userSize: 9, 
         userLimit: 10, 
-        lastActive: new Date(), 
+        lastActive: moment.duration().humanize() + " ago",
         messages:[] },
     {   roomId: "00000002", 
         roomName: "CS3216 too stressful", 
@@ -26,8 +28,50 @@ var chatsList = [
         categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
         userSize: 9, 
         userLimit: 10, 
-        lastActive: new Date(), 
-        messages:[] }];
+        lastActive: moment.duration().humanize() + " ago", 
+        messages:[] }
+        ,
+    {   roomId: "00000002", 
+        roomName: "CS3216 too stressful", 
+        roomDescription: "Please help me I need help.", 
+        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
+        userSize: 9, 
+        userLimit: 10, 
+        lastActive: moment.duration().humanize() + " ago", 
+        messages:[] },
+    {   roomId: "00000002", 
+        roomName: "CS3216 too stressful", 
+        roomDescription: "Please help me I need help.", 
+        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
+        userSize: 9, 
+        userLimit: 10, 
+        lastActive: moment.duration().humanize() + " ago", 
+        messages:[] },
+    {   roomId: "00000002", 
+        roomName: "CS3216 too stressful", 
+        roomDescription: "Please help me I need help.", 
+        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
+        userSize: 9, 
+        userLimit: 10, 
+        lastActive: moment.duration().humanize() + " ago", 
+        messages:[] },
+    {   roomId: "00000002", 
+        roomName: "CS3216 too stressful", 
+        roomDescription: "Please help me I need help.", 
+        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
+        userSize: 9, 
+        userLimit: 10, 
+        lastActive: moment.duration().humanize() + " ago", 
+        messages:[] },
+    {   roomId: "00000002", 
+        roomName: "CS3216 too stressful", 
+        roomDescription: "Please help me I need help.", 
+        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
+        userSize: 9, 
+        userLimit: 10, 
+        lastActive: moment.duration().humanize() + " ago", 
+        messages:[] }
+        ];
 
 @Component({
     selector: "list",
@@ -42,6 +86,7 @@ export class ChatListComponent {
 
     public showTab = platform.device.os === platform.platformNames.ios;
     public showSearch = false;
+    public selectedIndex = 1;
 
     constructor() {
         this.chats = [];
