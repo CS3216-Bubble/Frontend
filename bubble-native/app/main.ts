@@ -8,7 +8,7 @@ import { routes } from "./routes/app.routes";
 // components
 import { AppComponent } from "./app.component";
 import { LandingComponent } from "./components/landing/landing.component";
-import { ChatListComponent } from "./components/chatlist/chatlist.component";
+import { ChatListComponent } from "./components/chat-list/chat-list.component";
 
 @NgModule({
     declarations: [AppComponent, LandingComponent, ChatListComponent],
