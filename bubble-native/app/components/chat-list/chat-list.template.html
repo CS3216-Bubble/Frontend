@@ -30,16 +30,15 @@
 
 <StackLayout>
 	<!--<ios>-->
-	<CardView>
-		<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
-		</SearchBar>
-	</CardView>
+	<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
+	</SearchBar>
 	<!--</ios>-->
 
 	<GridLayout columns="*" rows="*">
 		<ScrollView class="body">
 			<StackLayout class="wrapper">
-				<CardView *ngFor="let chat of chats">
+
+				<FrameLayout *ngFor="let chat of chats">
 					<GridLayout borderRadius="6" class="card" columns="*" rows="*">
 						<StackLayout horizontalAlignment="stretch">
 							<Label horizontalAlignment="stretch" class="title" [text]="chat.roomName" android:class="label-item"></Label>
@@ -52,7 +51,8 @@
 							<Label horizontalAlignment="right" class="timestamp" [text]="chat.lastActive" android:class="label-item" textWrap="true"></Label>
 						</AbsoluteLayout>
 					</GridLayout>
-				</CardView>
+				</FrameLayout>
+
 			</StackLayout>
 		</ScrollView>
 	</GridLayout>

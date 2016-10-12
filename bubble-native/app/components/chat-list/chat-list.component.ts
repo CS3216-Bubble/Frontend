@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { CardView } from "nativescript-cardview";
 import { TabView } from "ui/tab-view";
 import { SearchBar } from "ui/search-bar";
 import { Chat } from "../../models/chat/chat";
