@@ -4,6 +4,7 @@ import { SearchBar } from "ui/search-bar";
 import { ListChat } from "../../models/list-chat/list-chat";
 import { ChatService } from "../../services/chat.service";
 import { Chat } from "../../models/chat/chat";
+
 import platform = require("platform");
 
 class ChatListModel {
@@ -91,9 +92,10 @@ export class ChatListComponent {
         this.chats = [];
 
         // Uncomment this for mock data
-        let chatsList = mockChatsList; 
-
-        // let chatsList = this.chatService.getAllChats();
+        // let chatsList = mockChatsList; 
+        console.log("HEY CHAT LIST CONSTRUCTOR");
+        let chatsList = this.chatService.getAllChats();
+        console.log("GET ALL CHATS LIAOOOOZZZ");
         for (var i = 0; i < chatsList.length; ++i) {
             var chatItem = chatsList[i];
             var categoriesString = "";

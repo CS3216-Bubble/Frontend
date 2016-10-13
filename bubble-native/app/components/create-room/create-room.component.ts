@@ -17,8 +17,8 @@ export class CreateRoomComponent implements OnInit {
   }
 
   addChat() {
-    // this.chatService.addChat(this.newChat);
-    // this.newChat = new Chat();
+    this.chatService.addChat(this.newChat);
+    this.newChat = new Chat();
   }
 
 }

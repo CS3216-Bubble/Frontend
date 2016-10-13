@@ -15,6 +15,8 @@ import { CreateRoomComponent } from "./components/create-room/create-room.compon
 // service
 import { ChatService } from "./services/chat.service"
 
+console.log("YAY! HELLO WORLD!");
+
 
 @NgModule({
     declarations: [AppComponent, LandingComponent, ChatListComponent, ChatRoomComponent, CreateRoomComponent],
@@ -26,6 +28,7 @@ import { ChatService } from "./services/chat.service"
     ],
     providers: [ChatService]
 })
-export class AppComponentModule { }
+export class AppComponentModule { 
+}
 
 platformNativeScriptDynamic().bootstrapModule(AppComponentModule);

@@ -21,9 +21,9 @@
 </StackLayout>
 
 <h3>
-    &lt;{{chatService.socket.id}}&gt;
-    <input [(ngModel)]="message" (keypress)="eventHandler($event)">
-    <button (click)="send()">Send</button>
+    <Label text="{{chatService.socket.id}}"></Label>
+	<TextField autocorrect="false" hint="message" [(text)]="message" fontSize="27" row="24" col="1" (returnPress)="send()"></TextField>
+    <Button (click)="send()">Send</Button>
 </h3>
 
-<span><a [routerLink]="['/']">Back to chat list</a></span>
+<Button class="link" [routerLink]="['/']">Back to chat list</Button>
