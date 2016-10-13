@@ -3,7 +3,7 @@
 
 <ActionBar class="action-bar" title="Bubble">
 
-	<ActionItem (tap)="onOptions($event)" text="Create Chat" ios.position="right" ios.systemIcon="7" class="material-icon" android.position="popup">
+	<ActionItem [nsRouterLink]="['/create-room']" text="Create Chat" ios.position="right" ios.systemIcon="7" class="material-icon" android.position="popup">
 	</ActionItem>
 
 	<!--<android>-->
@@ -46,6 +46,7 @@
 							<AbsoluteLayout horizontalAlignment="left">
 								<Label horizontalAlignment="left" class="sizing" text="{{chat.userSize}}/{{chat.userLimit}}" android:class="label-item" textWrap="true"></Label>
 							</AbsoluteLayout>
+							<Button text="Join chat" [nsRouterLink]="['/chat', chat.roomId]" class="link"></Button>
 						</StackLayout>
 						<AbsoluteLayout horizontalAlignment="right" verticalAlignment="bottom">
 							<Label horizontalAlignment="right" class="timestamp" [text]="chat.lastActive" android:class="label-item" textWrap="true"></Label>

@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { TabView } from "ui/tab-view";
 import { SearchBar } from "ui/search-bar";
+import { ChatService } from "../../services/chat.service";
 import { Chat } from "../../models/chat/chat";
 import platform = require("platform");
 
@@ -12,7 +13,7 @@ class ChatListModel {
 
 var moment = require('moment');
 
-var chatsList = [
+var mockChatsList = [
     {   roomId: "00000001",
         roomName: "CS3216 too stressful", 
         roomDescription: "Please help me I need help.", 
@@ -86,6 +87,11 @@ export class ChatListComponent {
     public showTab = platform.device.os === platform.platformNames.ios;
     public showSearch = false;
     public selectedIndex = 1;
+    public chatsList = this.chatService.getAllChats();
+
+    // Uncomment this for mock data
+    // public chatsList = mockChatsList;
+
 
     constructor() {
         this.chats = [];

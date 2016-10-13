@@ -1,0 +1,22 @@
+<StatusBar ios:barStyle="light" android:barStyle="#72D2E4">
+</StatusBar>
+<ActionBar class="action-bar" [title]="chat.roomName">
+	<ActionItem [nsRouterLink]="['/list']" text="Create Chat" ios.position="left" ios.systemIcon="7" class="material-icon" android.position="left">
+	</ActionItem>
+</ActionBar>
+
+
+<GridLayout rows="*" columns="*">
+    <GridLayout row="0" col="0" rows="auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto 50" columns="100 *">
+
+    	<Label text="Chat Title" row="24" col="0" textWrap="true"></Label>
+    	<TextField autocorrect="false" hint="Set chat title" [(text)]="newChat.roomName" fontSize="27" row="24" col="1" returnKeyType="next"></TextField>
+
+    	<Label text="Description" row="24" col="0" textWrap="true"></Label>
+    	<TextField autocorrect="false" hint="Set chat description" [(text)]="newChat.roomDescription" fontSize="27" row="24" col="1" returnKeyType="next"></TextField>
+
+    	<Label text="User Limit" row="24" col="0" textWrap="true"></Label>
+    	<TextField autocorrect="false" hint="Set user limit" [(text)]="newChat.userLimit" fontSize="27" row="24" col="1" returnKeyType="next"></TextField>
+
+	</GridLayout>
+</GridLayout>
