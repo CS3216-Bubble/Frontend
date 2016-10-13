@@ -10,6 +10,8 @@
 	<ActionItem (tap)="onToggleSearch($event)" android:text="Search" class="material-icon" android.systemIcon="ic_menu_search" android.position="actionBar" ios.position="left" ios:text="Search" ios.systemIcon="12">
 		<!--<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
 				</SearchBar>-->
+				<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
+	</SearchBar>
 	</ActionItem>
 	<!--</android>-->
 
@@ -30,8 +32,8 @@
 
 <StackLayout>
 	<!--<ios>-->
-	<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
-	</SearchBar>
+	<!--<SearchBar #searchBar title="Bubble" visibility="{{ showSearch ? 'visible' : 'collapse' }}" hint="Search for a chat..." style="background-color: #0072D2E4;">
+	</SearchBar>-->
 	<!--</ios>-->
 
 	<GridLayout columns="*" rows="*">

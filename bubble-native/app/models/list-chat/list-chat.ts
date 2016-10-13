@@ -1,17 +1,17 @@
 import { Message } from '../message/message';
 
-export class Chat {
+export class ListChat {
   roomId: string;
   roomName: string = '';
-  userLimit: number;
   roomType: number;
-  numberOfUsers: number;
+  userLimit: number;
   roomDescription: string = '';
   categories: string[];
+  numberOfUsers: number;
   lastActive: Date;
-  messages: Message[];
 
   constructor(values: Object = {}) {
     (<any>Object).assign(this, values);
   }
+  
 }

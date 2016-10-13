@@ -1,10 +1,8 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { TabView } from "ui/tab-view";
 import { SearchBar } from "ui/search-bar";
-import { Chat } from "../../models/chat/chat";
+import { ListChat } from "../../models/list-chat/list-chat";
 import platform = require("platform");
-
-// let searchbar = <SearchBar>this.searchBar.nativeElement;
 
 class ChatListModel {
     constructor(public roomId: string, public roomName: string, public roomDescription: string, public categories: string, public userSize: number, public userLimit: number, public lastActive: string) {}
@@ -12,64 +10,65 @@ class ChatListModel {
 
 var moment = require('moment');
 
+// Dummy array of list-chat modelled objects
 var chatsList = [
     {   roomId: "00000001",
         roomName: "CS3216 too stressful", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"],
-        userSize: 9, 
+        categories: ["School", "Stress", "Family", "Relationship", "Finance", "Social", "Health", "Personal"],
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago",
-        messages:[] },
+        lastActive: moment.duration().humanize() + " ago"},
     {   roomId: "00000002", 
-        roomName: "CS3216 too stressful", 
+        roomName: "CS3216 too relax", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
-        userSize: 9, 
+        categories: ["School", "Stress"], 
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago", 
-        messages:[] }
+        lastActive: moment.duration().humanize() + " ago"}
         ,
     {   roomId: "00000002", 
-        roomName: "CS3216 too stressful", 
+        roomName: "CS3216 too fun", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
-        userSize: 9, 
+        categories: ["School", "Stress"], 
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago", 
-        messages:[] },
+        lastActive: moment.duration().humanize() + " ago"},
     {   roomId: "00000002", 
-        roomName: "CS3216 too stressful", 
+        roomName: "CS3216 too exciting", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
-        userSize: 9, 
+        categories: ["School", "Stress"], 
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago", 
-        messages:[] },
+        lastActive: moment.duration().humanize() + " ago"},
     {   roomId: "00000002", 
-        roomName: "CS3216 too stressful", 
+        roomName: "CS3216 too crazy", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
-        userSize: 9, 
+        categories: ["School", "Stress"], 
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago", 
-        messages:[] },
+        lastActive: moment.duration().humanize() + " ago"},
     {   roomId: "00000002", 
-        roomName: "CS3216 too stressful", 
+        roomName: "CS3216 too colintan", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
-        userSize: 9, 
+        categories: ["School", "Stress"], 
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago", 
-        messages:[] },
+        lastActive: moment.duration().humanize() + " ago"},
     {   roomId: "00000002", 
-        roomName: "CS3216 too stressful", 
+        roomName: "CS3216 too benleong", 
+        roomType: 0,
         roomDescription: "Please help me I need help.", 
-        categories: ["School", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress", "Stress"], 
-        userSize: 9, 
+        categories: ["School", "Stress"], 
+        numberOfUsers: 9, 
         userLimit: 10, 
-        lastActive: moment.duration().humanize() + " ago", 
-        messages:[] }
+        lastActive: moment.duration().humanize() + " ago"}
         ];
 
 @Component({
@@ -99,16 +98,11 @@ export class ChatListComponent {
                     categoriesString += ", ";
                 }
             }
-            var parsedChat = new ChatListModel(chatItem.roomId, chatItem.roomName, chatItem.roomDescription, categoriesString, chatItem.userSize, chatItem.userLimit, chatItem.lastActive.toString());
+
+            var parsedChat = new ChatListModel(chatItem.roomId, chatItem.roomName, chatItem.roomDescription, categoriesString, chatItem.numberOfUsers, chatItem.userLimit, chatItem.lastActive.toString());
 
             this.chats.push(parsedChat);
         }
-
-        // var colorModule = require("color");
-        // var borderColor = new colorModule.Color("#0072D2E4");
-        // searchbar.dismissSoftInput();
-        // searchbar.ios.layer.borderWidth = 1;
-        // searchbar.ios.layer.borderColor = borderColor.ios;
     }
 
     public onItemTap(args) {
