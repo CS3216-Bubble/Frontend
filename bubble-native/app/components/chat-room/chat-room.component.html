@@ -1,21 +1,21 @@
 <StatusBar ios:barStyle="light" android:barStyle="#72D2E4">
 </StatusBar>
 <ActionBar class="action-bar" [title]="chat.roomName">
-	<ActionItem [nsRouterLink]="['/list']" text="Create Chat" ios.position="left" ios.systemIcon="7" class="material-icon" android.position="left">
+	<ActionItem [nsRouterLink]="['/create-room']" text="Create Chat" ios.position="left" ios.systemIcon="7" class="material-icon" android.position="left">
 	</ActionItem>
 </ActionBar>
 
 <StackLayout>
 	<ScrollView class="body">
 		<StackLayout class="wrapper">
-			<CardView *ngFor="let msg of chat.messages">
+			<FrameLayout *ngFor="let msg of chat.messages">
 				<GridLayout borderRadius="6" class="card" columns="*" rows="auto, *">
 					<StackLayout horizontalAlignment="stretch">
 						<Label horizontalAlignment="stretch" class="title" [text]="msg.userId" android:class="label-item"></Label>
 						<Label horizontalAlignment="stretch" class="title" [text]="msg.message" android:class="label-item"></Label>
 					</StackLayout>
 				</GridLayout>
-			</CardView>
+			</FrameLayout>
 		</StackLayout>
 	</ScrollView>
 </StackLayout>

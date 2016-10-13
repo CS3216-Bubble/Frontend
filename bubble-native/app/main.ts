@@ -9,15 +9,22 @@ import { routes } from "./routes/app.routes";
 import { AppComponent } from "./app.component";
 import { LandingComponent } from "./components/landing/landing.component";
 import { ChatListComponent } from "./components/chat-list/chat-list.component";
+import { ChatRoomComponent } from "./components/chat-room/chat-room.component";
+import { CreateRoomComponent } from "./components/create-room/create-room.component";
+
+// service
+import { ChatService } from "./services/chat.service"
+
 
 @NgModule({
-    declarations: [AppComponent, LandingComponent, ChatListComponent],
+    declarations: [AppComponent, LandingComponent, ChatListComponent, ChatRoomComponent, CreateRoomComponent],
     bootstrap: [AppComponent],
-    entryComponents: [LandingComponent, ChatListComponent],
+    entryComponents: [LandingComponent, ChatListComponent, ChatRoomComponent, CreateRoomComponent],
     imports: [NativeScriptModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(routes)
-    ]
+    ],
+    providers: [ChatService]
 })
 export class AppComponentModule { }
 

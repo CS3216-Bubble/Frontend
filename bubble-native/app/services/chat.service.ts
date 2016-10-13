@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as io from 'socket.io-client';
+import { Component, OnInit, Pipe, PipeTransform, Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { Chat } from '../models/chat/chat';
+// import { SocketIO } from "nativescript-socketio";
+declare var zonedCallback: Function;
 
 @Injectable()
 export class ChatService {
@@ -15,79 +16,67 @@ export class ChatService {
 
   conversationListener = null;
 
-  private host: string = window.location.protocol + '//' + window.location.hostname + ':3000';
-  // socket: SocketIOClient.Socket;
-  socket = null;
+  private host: string = 'http://localhost:3000';
+  // public socket: SocketIO;
+  
+//   constructor() {
+//     this.socket = new SocketIO(this.host);
+//     this.socket.on('list_rooms', function (data) {
+//       if (data instanceof Array) {
+//         for (let chat of data) {
+//           this.chats.push(new Chat(chat));
+//         }
+//       }
+//     })
 
-  constructor() {
-    this.socket = io(this.host);
+//     this.socket.on('create_room', function (data) {
+//       console.log('join room', data);
+//     })
 
-    let roomListListener = Observable.fromEvent(this.socket, 'list_rooms');
-    roomListListener.subscribe((payload) => {
-      console.log('room list', payload);
-      if (payload instanceof Array) {
-        for (let chat of payload) {
-          this.chats.push(new Chat(chat));
-        }
-      }
-    });
+//     this.socket.on('add_message', function (data) {
+//       console.log('add message', data);
+//     })
 
-    let createRoomListener = Observable.fromEvent(this.socket, 'create_room');
-    createRoomListener.subscribe((payload) => {
-      console.log('create room', payload);
-    });
+//     this.socket.on('bubble_error', function (data) {
+//       console.log('error', data);
+//     })
+//   }
 
-    let joinRoomListener = Observable.fromEvent(this.socket, 'join_room');
-    joinRoomListener.subscribe((payload) => {
-      console.log('join room', payload);
-    });
+//   addChat(chat: Chat) {
+//     this.socket.emit('create_room', chat);
+//   }
 
-    this.conversationListener = Observable.fromEvent(this.socket, 'add_message');
-    this.conversationListener.subscribe((payload) => {
-      console.log('sent message', payload);
-    });
+//   joinChat(roomId: string) {
+//     this.socket.emit('join_room', {
+//       roomId,
+//     });
+//     this.currentRoom = roomId;
+//   }
 
-    let errorListener = Observable.fromEvent(this.socket, 'bubble_error');
-    errorListener.subscribe((payload) => {
-      console.log('error', payload);
-    });
-  }
+//   updateChatById(roomId: string, values: Object = {}): Chat {
+//     let chat = this.getChatById(roomId);
+//     if (!chat) {
+//       return null;
+//     }
+//     (<any>Object).assign(chat, values);
+//     return chat;
+//   }
 
-  addChat(chat: Chat) {
-    this.socket.emit('create_room', chat);
-  }
+//   getAllChats(): Chat[] {
+//     this.socket.emit('list_rooms');
+//     return this.chats;
+//   }
 
-  joinChat(roomId: string) {
-    this.socket.emit('join_room', {
-      roomId,
-    });
-    this.currentRoom = roomId;
-  }
+//   getChatById(roomId: string): Chat {
+//     return this.chats
+//       .filter(chat => chat.roomId == roomId)
+//       .pop();
+//   }
 
-  updateChatById(roomId: string, values: Object = {}): Chat {
-    let chat = this.getChatById(roomId);
-    if (!chat) {
-      return null;
-    }
-    (<any>Object).assign(chat, values);
-    return chat;
-  }
-
-  getAllChats(): Chat[] {
-    this.socket.emit('list_rooms');
-    return this.chats;
-  }
-
-  getChatById(roomId: string): Chat {
-    return this.chats
-      .filter(chat => chat.roomId == roomId)
-      .pop();
-  }
-
-  createMessage(userId: string, message: string) {
-    this.socket.emit('add_message', {
-      roomId: this.currentRoom,
-      message,
-    });
-  }
+//   createMessage(userId: string, message: string) {
+//     this.socket.emit('add_message', {
+//       roomId: this.currentRoom,
+//       message,
+//     });
+//   }
 }

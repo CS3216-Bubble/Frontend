@@ -5,8 +5,8 @@ import { Chat } from '../../models/chat/chat';
 
 @Component({
   selector: 'app-chat-room',
-  templateUrl: './chat-room.component.html',
-  styleUrls: ['./chat-room.component.css']
+  templateUrl: './components/chat-room/chat-room.component.html'
+  //, styleUrls: ['./chat-room.component.css']
 })
 export class ChatRoomComponent implements OnInit {
 
@@ -15,26 +15,26 @@ export class ChatRoomComponent implements OnInit {
   constructor(private chatService: ChatService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.chat = this.chatService
-      .getChatById(this.route.snapshot.params['roomId']);
-    console.log(this.chat);
-    this.chatService.joinChat(this.chat.roomId);
-    this.chatService.conversationListener.subscribe((payload) => {
-      console.log('customer sent message', payload);
-      this.chat.messages.push(payload);
-    });
+    // this.chat = this.chatService
+    //   .getChatById(this.route.snapshot.params['roomId']);
+    // console.log(this.chat);
+    // this.chatService.joinChat(this.chat.roomId);
+    // this.chatService.conversationListener.subscribe((payload) => {
+    //   console.log('customer sent message', payload);
+    //   this.chat.messages.push(payload);
+    // });
   }
 
   send(): void {
-    if (this.chatService.socket && this.chatService.socket.id) {
-      this.chatService.createMessage(this.chatService.socket.id, this.message);
-      this.chat.messages.push({
-        userId: this.chatService.socket.id,
-        roomId: this.chatService.socket.roomId,
-        message: this.message
-      });
-      this.message = '';
-    }
+    // if (this.chatService.socket && this.chatService.socket.) {
+    //   this.chatService.createMessage(this.chatService.socket.id, this.message);
+    //   this.chat.messages.push({
+    //     userId: this.chatService.socket.id,
+    //     roomId: this.chatService.socket.roomId,
+    //     message: this.message
+    //   });
+    //   this.message = '';
+    // }
   }
 
   // Handle keypress event, for sending chat message

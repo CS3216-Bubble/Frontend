@@ -2,6 +2,8 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { TabView } from "ui/tab-view";
 import { SearchBar } from "ui/search-bar";
 import { ListChat } from "../../models/list-chat/list-chat";
+import { ChatService } from "../../services/chat.service";
+import { Chat } from "../../models/chat/chat";
 import platform = require("platform");
 
 class ChatListModel {
@@ -11,7 +13,7 @@ class ChatListModel {
 var moment = require('moment');
 
 // Dummy array of list-chat modelled objects
-var chatsList = [
+var mockChatsList = [
     {   roomId: "00000001",
         roomName: "CS3216 too stressful", 
         roomType: 0,
@@ -81,14 +83,17 @@ var chatsList = [
 export class ChatListComponent {
 
     public chats: Array<ChatListModel>;
-
     public showTab = platform.device.os === platform.platformNames.ios;
     public showSearch = false;
     public selectedIndex = 1;
 
-    constructor() {
+    constructor(private chatService: ChatService) {
         this.chats = [];
 
+        // Uncomment this for mock data
+        let chatsList = mockChatsList; 
+
+        // let chatsList = this.chatService.getAllChats();
         for (var i = 0; i < chatsList.length; ++i) {
             var chatItem = chatsList[i];
             var categoriesString = "";

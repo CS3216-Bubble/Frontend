@@ -7,7 +7,10 @@
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
         "noEmitOnError": true,
-        "types": ["jasmine", "hammerjs"]
+        "types": [
+            "jasmine",
+            "hammerjs"
+        ]
     },
     "exclude": [
         "node_modules",
